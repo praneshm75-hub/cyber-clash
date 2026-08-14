@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NeuroPulse - Mind Games & Cyber Royale Shooter</title>
+  <meta name="description" content="Train your mind and test your combat reflexes with NeuroPulse cognitive mini-games and Cyber Royale 2D battle royale shooter.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Particle Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="app-container">
+
+    <!-- Header Navbar -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">🎮</div>
+        <div class="brand-name">NeuroPulse</div>
+      </div>
+
+      <div class="header-controls">
+        <div class="streak-pill">
+          <span>🔥</span>
+          <span id="streak-val">1 Day</span>
+        </div>
+
+        <button class="btn-icon" id="btn-sound-toggle" title="Toggle Sound" aria-label="Toggle Sound">🔊</button>
+        <button class="btn-secondary" id="btn-view-stats">📊 Stats & Badges</button>
+      </div>
+    </header>
+
+    <!-- DASHBOARD VIEW (Hub) -->
+    <main id="dashboard-view">
+      
+      <!-- Hero & Cognitive Profile Grid -->
+      <section class="dashboard-grid">
+        <div class="glass-card hero-welcome">
+          <h1 class="hero-title">Elevate Mind & Combat Reflexes</h1>
+          <p class="hero-subtitle">Engage your brain with daily science-backed mini-games or drop into Cyber Royale — a 30-player 2D top-down shooter!</p>
+
+          <div class="stats-summary-row">
+            <div class="stat-box">
+              <span class="stat-label">Total XP</span>
+              <span class="stat-val" id="total-xp-val">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Games Played</span>
+              <span class="stat-val" id="games-played-val">0</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Rank Status</span>
+              <span class="stat-val">CYBER PRO</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SVG Cognitive Radar Card -->
+        <div class="glass-card radar-card">
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--text-muted);">Cognitive Profile</h3>
+          <div class="radar-wrapper">
+            <svg id="radar-svg" viewBox="0 0 220 220"></svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Battle Royale Game Banner -->
+      <section style="margin-top: 2rem;">
+        <div class="section-header">
+          <h2 class="section-title"><span>🔥</span> FEATURED GAME MODE</h2>
+        </div>
+
+        <div class="game-card" data-game="cyberRoyale" style="--card-color: #ff4d6d; --card-color-glow: rgba(255, 77, 109, 0.4); --card-color-bg: rgba(255, 77, 109, 0.15); border-width: 2px;">
+          <div class="game-card-top">
+            <div class="game-card-icon" style="font-size: 2.2rem;">💥</div>
+            <span class="domain-tag" style="background: rgba(255, 77, 109, 0.2); color: #ff4d6d; border-color: #ff4d6d;">30-PLAYER BATTLE ROYALE</span>
+          </div>
+          <div class="game-card-info">
+            <h3 style="font-size: 1.6rem; font-weight: 800;">Cyber Royale 2D</h3>
+            <p style="font-size: 1rem;">Drop into an expansive 30-player battlefield against 29 AI bots. Outrun the shrinking toxic storm, loot weapons (Shotguns, ARs, Snipers, Plasma Rockets), and fight to be the #1 Victory Royale!</p>
+          </div>
+          <div class="game-card-footer">
+            <span class="best-score">Best Score: <strong>0</strong></span>
+            <button class="btn-primary" style="padding: 0.6rem 1.75rem; font-size: 1rem; background: linear-gradient(135deg, #ff4d6d, #f77f00); box-shadow: 0 4px 20px rgba(255,77,109,0.5);">DROP IN NOW 🔥</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mini-Games Hub Grid -->
+      <section style="margin-top: 2rem;">
+        <div class="section-header">
+          <h2 class="section-title"><span>🧠</span> Mind & Brain Training Games</h2>
+        </div>
+
+        <div class="games-grid">
+          
+          <!-- Game 1: Memory Matrix -->
+          <div class="game-card" data-game="memoryMatrix" style="--card-color: #00f3ff; --card-color-glow: rgba(0, 243, 255, 0.3); --card-color-bg: rgba(0, 243, 255, 0.12);">
+            <div class="game-card-top">
+              <div class="game-card-icon">🧩</div>
+              <span class="domain-tag">Memory</span>
+            </div>
+            <div class="game-card-info">
+              <h3>Memory Matrix</h3>
+              <p>Memorize flashed tile positions on expanding grids and recall them accurately.</p>
+            </div>
+            <div class="game-card-footer">
+              <span class="best-score">Best Score: <strong>0</strong></span>
+              <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">PLAY</button>
+            </div>
+          </div>
+
+          <!-- Game 2: Color Clash -->
+          <div class="game-card" data-game="colorClash" style="--card-color: #ff4d6d; --card-color-glow: rgba(255, 77, 109, 0.3); --card-color-bg: rgba(255, 77, 109, 0.12);">
+            <div class="game-card-top">
+              <div class="game-card-icon">⚡</div>
+              <span class="domain-tag">Focus</span>
+            </div>
+            <div class="game-card-info">
+              <h3>Color Clash</h3>
+              <p>Overcome the Stroop effect by matching font colors or word meanings under time pressure.</p>
+            </div>
+            <div class="game-card-footer">
+              <span class="best-score">Best Score: <strong>0</strong></span>
+              <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">PLAY</button>
+            </div>
+          </div>
+
+          <!-- Game 3: Pattern Sequence -->
+          <div class="game-card" data-game="patternSequence" style="--card-color: #9d4edd; --card-color-glow: rgba(157, 78, 221, 0.3); --card-color-bg: rgba(157, 78, 221, 0.12);">
+            <div class="game-card-top">
+              <div class="game-card-icon">🔮</div>
+              <span class="domain-tag">Pattern</span>
+            </div>
+            <div class="game-card-info">
+              <h3>Pattern Sequence</h3>
+              <p>Listen and watch growing audio-visual pad sequences, then repeat them step-by-step.</p>
+            </div>
+            <div class="game-card-footer">
+              <span class="best-score">Best Score: <strong>0</strong></span>
+              <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">PLAY</button>
+            </div>
+          </div>
+
+          <!-- Game 4: Speed Math -->
+          <div class="game-card" data-game="speedMath" style="--card-color: #00f5d4; --card-color-glow: rgba(0, 245, 212, 0.3); --card-color-bg: rgba(0, 245, 212, 0.12);">
+            <div class="game-card-top">
+              <div class="game-card-icon">🧮</div>
+              <span class="domain-tag">Speed</span>
+            </div>
+            <div class="game-card-info">
+              <h3>Speed Math</h3>
+              <p>Solve rapid mental arithmetic calculations against a depleting timer bar.</p>
+            </div>
+            <div class="game-card-footer">
+              <span class="best-score">Best Score: <strong>0</strong></span>
+              <button class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">PLAY</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- ACTIVE GAME ARENA VIEW -->
+    <section id="arena-view" class="game-arena">
+      <div class="arena-header">
+        <div class="arena-title-wrap">
+          <button class="btn-secondary" id="btn-quit-arena" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">← Exit</button>
+          <span class="arena-title" id="arena-title">Brain Game</span>
+        </div>
+
+        <div class="arena-stats">
+          <div class="stat-pill">
+            <span class="label">SCORE</span>
+            <span class="val" id="arena-score">0</span>
+          </div>
+          <div class="stat-pill">
+            <span class="label">LEVEL</span>
+            <span class="val" id="arena-level">1</span>
+          </div>
+          <div class="stat-pill">
+            <span class="label">STATUS</span>
+            <span class="val" id="arena-lives">❤️❤️❤️</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timer Progress Bar -->
+      <div class="arena-timer-bar-wrap">
+        <div class="arena-timer-bar" id="arena-timer-bar"></div>
+      </div>
+
+      <!-- Stage / Playing Area -->
+      <div class="arena-stage" id="arena-stage">
+        <!-- Dynamic Game Content Injected Here -->
+        <div class="combo-badge" id="combo-badge">3x COMBO!</div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- STATS & ACHIEVEMENTS MODAL -->
+  <div class="modal-backdrop" id="stats-modal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h2 class="modal-title">🏆 Badges & Achievements</h2>
+        <button class="btn-icon" id="modal-close" style="width: 32px; height: 32px; font-size: 0.9rem;">✕</button>
+      </div>
+
+      <div id="modal-badges-container">
+        <!-- Badges dynamically rendered here -->
+      </div>
+
+      <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+        <button class="btn-secondary" id="btn-reset-data" style="color: var(--coral-accent); border-color: rgba(255,77,109,0.3);">Reset Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/sound.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/canvas-bg.js"></script>
+  <script src="js/games/memory-matrix.js"></script>
+  <script src="js/games/color-clash.js"></script>
+  <script src="js/games/pattern-sequence.js"></script>
+  <script src="js/games/speed-math.js"></script>
+  <script src="js/games/cyber-royale.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
